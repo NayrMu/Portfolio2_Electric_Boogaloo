@@ -61,17 +61,24 @@ function processCommand(command) {
 function parseInput(input) {
     // Display the command and response in the terminal
     output.innerHTML += getFullTree(currentDir) + `: ~$ ${input}\n`;
+    let returnStr = "";
 
     let tokens = input.split(" ");
-    console.log(tokens[1]);
-    if (tokens[0] == "cd") {
-        if (tokens[1] in currentDir.children) {
-            currentDir = currentDir.children[tokens[1]]
+    let cmd = tokens[0];
+    let param = tokens [1];
+    if (cmd == "cd") {
+        if (param in currentDir.children) {
+            currentDir = currentDir.children[param]
             marker.innerHTML = getFullTree(currentDir) + ": ~$ ";
             if (currentDir.type == "file") {
-                console.log(currentDir.text);
             }
             return `Entering directory: ${currentDir.name}`
+        }
+    }
+    else if (cmd == "ls") {
+        console.log("ls")
+        for (let key in currentDir.children) {
+
         }
     }
 }
@@ -83,7 +90,6 @@ function getFullTree(directory) {
         cDir = cDir.parent;
         returnStr = `${cDir.name}/` + returnStr;
         
-        console.log(cDir.name)
     }
 
     return returnStr;
