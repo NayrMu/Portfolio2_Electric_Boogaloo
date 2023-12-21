@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body style="margin: 0">
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="VoxelEngine.html">Voxel Engine Project</a>
+		</nav>
+		<article>
+			<div class="content-wrapper">
+                <div class="banner work-in-progress">
+					<span>WORK IN PROGRESS</span>
+				</div>
+				<h1>Voxel Engine</h1>
+                <h3>A Voxel Renderer made in C/C++ with OpenGL</h3>
+				<p>
+					- 12/21/2023 <br>- Hello World!<br><br>
+
+                    I will be denoting my C++ code in purple, my C code in blue, and my miscelenous 
+                    (shaders, CMake, etc.) in orange.
+
+                    The first thing I had to do was setup my my CMake files and a basic hello world 
+                    file to prove everything was included and compiling correctly.
+                    <pre>
+<span>Top-Level CMakeLists.txt</span>
+<code class="misc-code">
+cmake_minimum_required (VERSION 3.8)
+
+# Enable Hot Reload for MSVC compilers if supported.
+if (POLICY CMP0141)
+    cmake_policy(SET CMP0141 NEW)
+    set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+endif()
+
+
+include_directories(source_files PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/include)
+link_directories(source_files PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/lib-mingw-w64)
+
+project("VoxelEngine")
+
+add_subdirectory("src")
+</code>
+                    </pre>
+
+                    <pre>
+<span>Src-Level CMakeLists.txt</span>
+<code class="misc-code">
+# Create an executable target and specify the source files
+add_executable(source_files
+    "main.cpp"
+)
+
+
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+    set_property(TARGET source_files PROPERTY CXX_STANDARD 20)
+endif()
+</code>
+                    </pre>
+
+                    <pre>
+<span>main.cpp</span>
+<code class="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;glad/glad.h&gt;
+#include &lt;GLFW/glfw3.h&gt;
+
+int main() {
+    std::cout << "hello world!";
+    return 0;
+}
+</code>
+                    </pre>
+
+				</p>
+			</div>
+            - Window Creation<br>
+            The next thing I need to do is create a window, this takes some setup and creating an OpenGL context.
+
+            
+		</article>
+		<div class="spacer">
+
+		</div>
+	</body>
+</html>
